@@ -4,6 +4,8 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
+#define BUFFER_SIZE 4096
+
 using namespace std;
 
 void main()
@@ -50,7 +52,7 @@ void main()
 	}
 
 	// Send and receive data
-	char buf[4096];
+	char buf[BUFFER_SIZE];
 	string login;
 	string pass;
 
@@ -69,8 +71,8 @@ void main()
 			if (sendResult != SOCKET_ERROR)
 			{
 				// Wait for response
-				ZeroMemory(buf, 4096);
-				int bytesReceived = recv(sock, buf, 4096, 0);
+				ZeroMemory(buf, BUFFER_SIZE);
+				int bytesReceived = recv(sock, buf, BUFFER_SIZE, 0);
 				if (bytesReceived > 0)
 				{
 					// Echo response to console
